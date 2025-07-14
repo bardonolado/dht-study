@@ -1,4 +1,5 @@
-# dht-2topics-db-rpc / swarm-2topics-db-rpc / swarm-protomux-db-rpc Projects
+# DHT different implementations/tests
+## dht-2topics-db-rpc / swarm-2topics-db-rpc / swarm-protomux-db-rpc Projects
 
 A set of example projects demonstrating decentralized data replication and RPC over Hypercore and Hyperswarm/HyperDHT networks, showcasing different ways to organize topics and multiplex protocols.
 
