@@ -9,7 +9,7 @@ import crypto from "crypto";
 import path from "path";
 import express from 'express';
 
-const TOPIC = crypto.createHash("sha256").update("4d4aw8d8a4d4d4d4d4d4ewew").digest();
+const TOPIC = crypto.createHash("sha256").update("dasdasd489249148d28d421d842148").digest();
 
 const main = async () => {
     const dataPath = process.argv[2] || "./storage";

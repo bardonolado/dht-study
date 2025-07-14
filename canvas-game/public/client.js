@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 const size = 20;
 
 const colorPalette = [
-    "#1E3A8A", // Deep Blue
+    "#FFFFFF", // White
     "#065F46", // Dark Green
     "#0F766E", // Teal
     "#7C3AED", // Purple
@@ -13,12 +13,13 @@ const colorPalette = [
     "#EA580C", // Orange
     "#D97706", // Amber
     "#15803D", // Green
-    "#0369A1", // Sky Blue
+    "#1E3A8A", // Deep Blue
     "#7C2D12", // Brown
     "#374151"  // Gray
 ];
 
 let selectedColor = colorPalette[0];
+let isDrawing = false;
 
 // Create color palette buttons
 function createColorPalette() {
@@ -60,27 +61,48 @@ function drawPixel(x, y, color) {
     ctx.fillRect(x * size, y * size, size, size);
 }
 
-canvas.addEventListener("click", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = Math.floor((e.clientX - rect.left) / size);
-    const y = Math.floor((e.clientY - rect.top) / size);
-    
+function drawPixelAndSend(x, y) {
     drawPixel(x, y, selectedColor);
-
+    
     fetch("/pixel", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ x, y, color: selectedColor })
     });
+}
+
+function getPixelCoordinates(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.floor((e.clientX - rect.left) / size);
+    const y = Math.floor((e.clientY - rect.top) / size);
+    return { x, y };
+}
+
+canvas.addEventListener("mousedown", (e) => {
+    isDrawing = true;
+    const { x, y } = getPixelCoordinates(e);
+    drawPixelAndSend(x, y);
 });
 
-// Initialize color palette
+canvas.addEventListener("mousemove", (e) => {
+    if (isDrawing) {
+        const { x, y } = getPixelCoordinates(e);
+        drawPixelAndSend(x, y);
+    }
+});
+
+canvas.addEventListener("mouseup", () => {
+    isDrawing = false;
+});
+
+canvas.addEventListener("mouseleave", () => {
+    isDrawing = false;
+});
+
 createColorPalette();
 
-// Load pixels initially
 loadPixels();
 
-// Refresh pixels every 1 second
 setInterval(() => {
     loadPixels();
 }, 1000);
