@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@hyperswarm/dht": "^6.5.1",
+    "@hyperswarm/rpc": "^3.3.2",
+    "@hyperswarm/secret-stream": "^6.8.1",
+    "async": "^3.2.1",
+    "autobase": "^7.11.0",
+    "bfx-facs-base": "git+https://github.com/bitfinexcom/bfx-facs-base.git",
+    "corestore": "^7.4.5",
+    "ed25519-supercop": "^2.0.1",
+    "express": "^5.1.0",
+    "hp-svc-facs-store": "^0.0.1-security",
+    "hyperbee": "^2.24.2",
+    "hypercore": "^11.10.1",
+    "hyperdht": "github:hyperswarm/dht",
+    "hyperswarm": "^4.11.7",
+    "protomux": "^3.10.1",
+    "protomux-rpc": "^1.7.1"
+  },
+  "devDependencies": {
+    "@prev/corestore": "npm:corestore@^6.17.0",
+    "brittle": "^3.16.3",
+    "standard": "^17.1.2"
+  }
+}
